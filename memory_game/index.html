@@ -21,19 +21,31 @@
 			<p>Concentration, also known as Match Match, Memory, Pelmanism, Skinkey-suijaku, Pexeso, or simply Pairs, is a card game in which all the cards are laid face down on a surface and two cards are flipped face up over each turn. The object of the game is to turn over pairs of matching cards.</p>
 		</section>
 
-		<section id="game">
-			<div>
-				<img src="images/back.png" alt="Queen of Diamonds">
-				<img src="images/back.png" alt="Queen of Hearts">
-				<img src="images/back.png" alt="King of Diamonds">
-				<img src="images/back.png" alt="King of Hearts">
-			</div>
+		<section id="game" class="clearfix">
+			<div class="card-back"></div>
+			<div class="card-back"></div>
+			<div class="card-back"></div>
+			<div class="card-back"></div>
 		</section>
 	</main>
 	<footer class="clearfix">
 		<p class="copyright">&copy; 2017</p>
 		<p cass="message">Created with &hearts; by <span class="name">GA</span></p>
 	</footer>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript">
+		var deck = new Deck();
+		// deck.shuffle();
+
+		// var memGame = new Layout(1, 4);
+
+		$(function(){
+			$("#game.div").each(function(index){
+				$(this).text(deck.cards[index].getName());
+			});
+		});
+
+	</script>
 </body>
 </html>

@@ -66,6 +66,29 @@ img {
 	margin: 40px 8px 0 8px;
 }
 
+#game {
+	margin: 40px auto;
+	background-color: black;
+}
+
+#game div {
+	width: 164px;
+	height: 242px;
+	margin: 10px 8px 0 8px;
+	display: inline-block;
+	float: left;
+}
+
+.card-back {
+	background-image: url("../images/back2.png");
+}
+
+.card-flipped {
+	background-image: url("../images/standard-deck.png");
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+
 footer {
 	text-transform: uppercase;
 	padding: 0 20px;
