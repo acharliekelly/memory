@@ -22,30 +22,19 @@
 		</section>
 
 		<section id="game" class="clearfix">
-			<div class="card-back"></div>
-			<div class="card-back"></div>
-			<div class="card-back"></div>
-			<div class="card-back"></div>
+			<div>
+				<img src="images/back.png">
+				<img src="images/back.png">
+				<img src="images/back.png">
+				<img src="images/back.png">
+			</div>
 		</section>
 	</main>
 	<footer class="clearfix">
 		<p class="copyright">&copy; 2017</p>
 		<p cass="message">Created with &hearts; by <span class="name">GA</span></p>
 	</footer>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
-	<script type="text/javascript">
-		var deck = new Deck();
-		// deck.shuffle();
-
-		// var memGame = new Layout(1, 4);
-
-		$(function(){
-			$("#game.div").each(function(index){
-				$(this).text(deck.cards[index].getName());
-			});
-		});
-
-	</script>
+	
 </body>
 </html>
