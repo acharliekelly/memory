@@ -62,8 +62,27 @@ p {
 	font-size: 18px;
 }
 
+#match {
+	visibility: hidden;
+	border: solid #F15B31 3px;
+	border-radius: 4px;
+	background-color: #F15B31;
+	color: #0D2C40;
+	padding: 10px 5px;
+}
+#match.show {
+	visibility: visible;
+}
+
 img {
-	margin: 40px 8px 0 8px;
+	margin: 10px 8px 0 8px;
+}
+img.matched {
+	opacity: 0.5;
+}
+
+.board {
+	background-color: #1E5C81;
 }
 
 
