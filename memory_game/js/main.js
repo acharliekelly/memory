@@ -1,30 +1,15 @@
-// var cards = ["queen", "queen", "king", "king"];
 
 var cardsInPlay = [];
-
-
-// var cardOne = cards[0];
-// cardsInPlay.push(cardOne);
-
-// var cardTwo = cards[1];
-// cardsInPlay.push(cardTwo);
-
-
-// if (cardsInPlay.length === 2) {
-// 	// user flipped two cards
-// 	if (cardsInPlay[0] == cardsInPlay[1]) {
-// 		alert("You found a match!");
-// 	} else {
-// 		alert("Sorry, try again.");
-// 	}
-// }
 
 function checkWin() {
 	if (cardsInPlay.length === 2) {
 		if (getCardType(cardsInPlay[0]) == getCardType(cardsInPlay[1])) {
 			// you win
-			alert("You Win!!");
-			resetCards();
+			setTimeout(function(){
+				alert("You Win!");
+				resetCards();
+			}, 1000);
+			
 		} else {
 			// you lose
 			setTimeout(resetCards, 2000);
