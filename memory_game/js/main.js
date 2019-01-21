@@ -1,9 +1,35 @@
 
+var deck = ["queen-of-diamonds", "queen-of-hearts", "king-of-diamonds", "king-of-hearts"];
 var cardsInPlay = [];
 
-function checkWin() {
+
+var createBoard = function() {
+	for (var i=0; i<deck.length; i++) {
+		var cardElement = document.createElement('img');
+		cardElement.setAttribute('src', "images/back.png");
+		cardElement.setAttribute('data-id', i);
+		cardElement.setAttribute('data-name', deck[i]);
+		cardElement.addEventListener('click', flipCard);
+		document.getElementById('game-board').appendChild(cardElement);
+	}
+}
+
+var flipCard = function() {
+	var src = "images/" + this.getAttribute('data-name') + ".png";
+	this.setAttribute('src', src);
+	cardsInPlay.push(this);
+	checkWin();
+}
+
+var getRank = function(cardElement) {
+	var cardName = cardElement.getAttribute('data-name');
+	var n = cardName.indexOf("-");
+	return cardName.substring(0, n);
+}
+
+var checkWin = function() {
 	if (cardsInPlay.length === 2) {
-		if (getCardType(cardsInPlay[0]) == getCardType(cardsInPlay[1])) {
+		if (getRank(cardsInPlay[0]) == getRank(cardsInPlay[1])) {
 			// you win
 			setTimeout(function(){
 				alert("You Win!");
@@ -20,35 +46,14 @@ function checkWin() {
 	// otherwise do nothing
 }
 
-function getCardType(cardElement) {
-	var idStr = cardElement.getAttribute('id');
-	var dashIdx = idStr.indexOf("-");
-	return idStr.substr(0, dashIdx);
-}
+var resetCards = function() {
+	document.querySelectorAll("#game-board img").forEach(function(img){
+		img.setAttribute('src', 'images/back.png');
 
-document.querySelectorAll("img.card").forEach(function(item){
-	item.addEventListener('click', function(){
-		if (this.classList.contains('flipped')) {
-			// already flipped - do nothing
-		} else {
-			this.classList.remove('card');
-			this.classList.add('flipped');
-			var frontSrc = "images/" + this.getAttribute('id') + ".png";
-			this.setAttribute('src', frontSrc);
-			cardsInPlay.push(this);
-			checkWin();
-		}
-	});
-});
-
-function resetCards() {
-	document.querySelectorAll("#game img").forEach(function(item){
-		item.classList.remove('flipped');
-		item.classList.add('card');
-		item.setAttribute('src', "images/back.png");
 	});
 	cardsInPlay = [];
 }
 
+createBoard();
 
 
