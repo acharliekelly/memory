@@ -1,4 +1,6 @@
 
+const USE_LOCAL_IMAGES = true;
+
 
 var deck = ["jack-diamonds","queen-diamonds","king-diamonds","ace-diamonds",
 			"jack-clubs","queen-clubs","king-clubs","ace-clubs",
@@ -7,13 +9,42 @@ var deck = ["jack-diamonds","queen-diamonds","king-diamonds","ace-diamonds",
 var cardsInPlay = [];
 
 
+/**
+ * lookup image source from cloud storage
+ */
+var imgSrcLookup = function(cardName) {
+  if (cardImgSrc) {
+    return cardImgSrc[cardName];
+  } else {
+    console.log('missing file: flickr-img.js');
+    return '';
+  }
+}
+
+/**
+ * get image path
+ */
+var getImagePath = function(cardName) {
+  var src = "";
+  if (USE_LOCAL_IMAGES) {
+    src = "images/" + cardName + ".jpg";
+  } else {
+    src = imgSrcLookup(cardName);
+  }
+  return src;
+}
+
+
+var getBackImage = function() {
+	return getImagePath('back');
+}
 
 
 /**
  * flip a card over
  */
 var flipCard = function() {
-	var src = "images/" + this.getAttribute('data-name') + ".jpg";
+	var src = getImagePath(this.getAttribute('data-name'));
 	this.setAttribute('src', src);
 	this.className = 'flipped';
 	cardsInPlay.push(this);
@@ -94,7 +125,7 @@ var clearInPlay = function(boolMatch) {
 		} else {
 			// no match
 			cardElement.classList.remove('flipped');
-			cardElement.setAttribute('src', 'images/back.jpg');
+			cardElement.setAttribute('src', getBackImage());
 		}
 	}
 }
@@ -157,7 +188,7 @@ var createBoard = function() {
 		var rank = cardName.substring(0,dash);
 		var suit = cardName.substring(dash+1);
 		var cardElement = document.createElement('img');
-		cardElement.setAttribute('src', "images/back.jpg");
+		cardElement.setAttribute('src', getBackImage());
 		cardElement.setAttribute('data-id', i);
 		cardElement.setAttribute('data-name', cardName);
 		cardElement.setAttribute('data-rank', rank);
@@ -178,5 +209,3 @@ var init = function() {
 }
 
 init();
-
-
